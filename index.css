@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background-color: #FFFFEE;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    opacity: .1;
+    background: url('mary.jpg') center/45% no-repeat; /* Adjust the image path and scaling */
+   
+}
+
+
+
+header {
+    background-color: #368533;
+    color: black;
+    text-align: left;
+    padding: 3px; /* Adjust the padding to make it smaller */
+    height: 50px; /* Adjust the height to make it thinner */
+}
+
+header h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px; /* Set the text size to 10px */
+    margin: 0; /* Remove default margin for h1 */
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.welcome-container {
+    text-align: center;
+}
+
+.welcome-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: white;
+    background-color:  rgb(54, 133, 51);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: rgb(54, 133, 51);
+    color: black;
+    text-align: center;
+    padding: 0.5rem; /* Adjust the padding to make it smaller */
+    height: 25px; /* Adjust the height to make it thinner */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Add this to your existing styles or create a new stylesheet */
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(27, 59, 20, 0.123);
+}
+
+.modal-content {
+    background-color: rgba(252, 252, 252, 0.705); /* Set the background color with opacity */
+    margin: auto;
+    padding: 20px;
+    border: none; /* Remove the border */
+    width: 80%;
+    max-width: 400px; /* Adjust the maximum width as needed */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #368533;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #2d6e2a;
+}
+
+label input {
+    margin-right: 4px;
+}

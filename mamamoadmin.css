@@ -1,0 +1,232 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    background-color:#FFFFEE;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    opacity: .1;
+    background: url('mary.jpg') center/45% no-repeat; /* Adjust the image path and scaling */
+}
+
+header {
+    background-color: #368533;
+    color: rgb(243, 239, 239);
+    text-align: left;
+    padding: 3px; /* Adjust the padding to make it smaller */
+    height: 50px; /* Adjust the height to make it thinner */
+}
+
+header h1 {
+    font-size: 25px; /* Set the text size to 10px */
+    margin: 1; /* Remove default margin for h1 */
+}
+
+footer {
+    background-color: #368533;
+    color: black;
+    text-align: center;
+    padding: 1px; /* Adjust the padding to make it smaller */
+    height: 24px; /* Adjust the height to make it thinner */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}   
+
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px; /* Height of the header */
+    bottom: 30px; /* Height of the footer */
+    width: 150px;
+    background-color: #368533;
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar ul li {
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+#sidebar ul li:hover {
+    background-color: #1f3017;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+#logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#logo img {
+    width: 100px; /* Adjust as needed */
+}
+
+#content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+/* Table Styles */
+table {
+    width: 100%; /* Update width to 90% */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: fit-content;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Add button container */
+.add-button-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Add Patient button style */
+.add-button-container button {
+    background-color: #368533;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-button-container button:hover {
+    background-color: #2d6e2a;
+}
+
+/* Edit and Delete button style */
+.edit, .delete {
+    background-color: #368533;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit:hover, .delete:hover {
+    background-color: #2d6e2a;
+}
+
+/* Adjust button size for small screens */
+@media screen and (max-width: 600px) {
+    button {
+        padding: 4px 8px;
+    }
+}
+
+.add-button {
+    background-color: #368533; /* Set background color */
+    color: white; /* Set text color */
+    padding: 8px 16px; /* Add padding */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: none; /* Remove underline from the anchor tag */
+    float: right; /* Float the button to the right */
+    margin-top: 10px; /* Add margin to create space from the top */
+}
+
+.add-button:hover {
+    background-color: #2d6e2a; /* Darken background color on hover */
+}
+
+.add-button a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color */
+}
+
+.edit {
+    color: #ffffff; /* Set the text color */
+    text-decoration: none; /* Remove the underline */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    margin-right: 5px; /* Add some right margin */
+    border: 1px solid #368533; /* Add border */
+    padding: 4px 8px; /* Adjust padding for better appearance */
+    border-radius: 4px; /* Add border radius for rounded corners */
+}
+
+.edit:hover {
+    color: #ffffff; /* Change text color on hover */
+    border-color: #2d6e2a; /* Change border color on hover */
+}
+
+.delete {
+    color: #f8f8f8; /* Red color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 5px; /* Adjust margin if needed */
+    border: 1px solid #07e719; /* Add border */
+    padding: 4px 8px; /* Adjust padding for better appearance */
+    border-radius: 4px; /* Add border-radius for rounded corners */
+}
+
+.delete:hover {
+    color: #ffffff; /* Darker red color on hover */
+    text-decoration: none; /* Underline on hover */
+    border-color: #f5f5f5; /* Darker border color on hover */
+}
+
+/* Adjust button sizes for small screens */
+@media screen and (max-width: 600px) {
+    .edit,
+    .delete {
+        padding: 2px 4px; /* Adjust padding for small screens */
+    }
+}
+
+#logoutBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color:  #368533; /* Choose your desired color */
+    color: #ffffff; /* Text color */
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+#logoutBtn:hover {
+    background-color: #2d6e2a; /* Hover color */
+}

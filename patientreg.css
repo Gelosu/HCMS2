@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    background-color:#FFFFEE;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    opacity: .1;
+    background: url('mary.jpg') center/45% no-repeat; /* Adjust the image path and scaling */
+   
+}
+
+/* Rest of your styles go here */
+
+
+header {
+    background-color: #368533;
+    color: black;
+    text-align: left;
+    padding: 3px; /* Adjust the padding to make it smaller */
+    height: 50px; /* Adjust the height to make it thinner */
+}
+
+header h1 {
+    font-size: 25px; /* Set the text size to 10px */
+    margin: 1; /* Remove default margin for h1 */
+}
+
+
+
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    float: right;
+}
+button:hover {
+    background-color: #45a049;
+}
+footer {
+    background-color: #368533;
+    color: black;
+    text-align: center;
+    padding: 1px; /* Adjust the padding to make it smaller */
+    height: 24px; /* Adjust the height to make it thinner */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
