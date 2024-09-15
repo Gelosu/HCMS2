@@ -58,11 +58,10 @@ $healthWorker = $_SESSION['adfirstname'] . ' ' . $_SESSION['adsurname'];
         include 'APPOINTMENT/appointmentlist.php';
 ?>
 
-</section>
 
 
         <!-- Patient Medication section -->
-        <section id="patient-med" class="section" style="display: none;">
+        <section id="patient-med" class="section">
             <h2>Patient Medication</h2>
             
             <div class="search-and-add-container">
@@ -455,6 +454,7 @@ function submitAddMedicationForm(event) {
 
 
 // Update Medication Table
+// Update Medication Table
 function updateMedicationTable(medications) {
     const tableBody = document.querySelector('#medicationtable tbody');
     
@@ -481,17 +481,27 @@ function updateMedicationTable(medications) {
                     console.warn('Expected p_medication to be an array, but got:', medication.p_medication);
                 }
 
+                // Escape function parameters for safe usage in HTML attributes
+                const escapeHtml = (str) => {
+                    return str
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/'/g, "&#039;");
+                };
+
                 // Create and append row
                 row.innerHTML = `
-                    <td>${medication.patient_name}</td>
+                    <td>${escapeHtml(medication.patient_name)}</td>
                     <td>${medicinesList}</td>
                     <td>${formatDateTime(medication.date_time)}</td>
-                    <td>${medication.healthworker}</td>
+                    <td>${escapeHtml(medication.healthworker)}</td>
                     <td>
-                        <button onclick="openEditMedicationModal('${medication.id}', '${medication.patient_name}', '${JSON.stringify(medication.p_medication)}', '${medication.date_time}', '${medication.healthworker}')">
+                        <button onclick="openEditMedicationModal('${escapeHtml(medication.id)}', '${escapeHtml(medication.patient_name)}', '${escapeHtml(JSON.stringify(medication.p_medication))}', '${escapeHtml(medication.date_time)}', '${escapeHtml(medication.healthworker)}')">
                             <img src='edit_icon.png' alt='Edit' style='width: 20px; height: 20px;'>
                         </button>
-                        <button onclick="deleteMedication('${medication.id}')">
+                        <button onclick="deleteMedication('${escapeHtml(medication.id)}')">
                             <img src='delete_icon.png' alt='Delete' class='delete-btn' style='width: 20px; height: 20px;'>
                         </button>
                     </td>
@@ -506,6 +516,8 @@ function updateMedicationTable(medications) {
         console.error('Table body not found. Ensure the table ID and selector are correct.');
     }
 }
+
+
 
 // Helper function to format date and time
 function formatDateTime(dateTime) {
@@ -668,7 +680,7 @@ function submitEditMedicationForm(event) {
 // Delete Medication
 function deleteMedication(medicationId) {
     if (confirm('Are you sure you want to delete this medication?')) {
-        fetch('delete_medication.php', {
+        fetch('P_MEDICATION/delete_pmedication.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({ id: medicationId })
@@ -684,6 +696,7 @@ function deleteMedication(medicationId) {
         .catch(error => console.error('Error:', error));
     }
 }
+
 
 
 
