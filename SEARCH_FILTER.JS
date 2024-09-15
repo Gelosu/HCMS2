@@ -86,6 +86,28 @@ function searchTable4(inputValue) {
     }
 }
 
+function searchTable5(inputValue) {
+    var searchQuery = inputValue.toLowerCase().trim();
+    var table = document.getElementById("medicationtable"); 
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var cell = row.getElementsByTagName('td')[0]; 
+
+        if (cell) {
+            var cellValue = cell.textContent || cell.innerText; 
+           
+            if (cellValue.toLowerCase().indexOf(searchQuery) > -1) {
+                row.style.display = ''; 
+            } else {
+                row.style.display = 'none'; 
+            }
+        }
+    }
+}
+
 
 //filter using Dropdown
 function filterByCategory(selectedCategory) {
