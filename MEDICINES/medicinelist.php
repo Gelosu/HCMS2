@@ -15,7 +15,7 @@
             <button onclick="openAddMedicineModal()">Add Medicine</button>
         </div>
     </div>
-
+    <div class="table-container">
         <table id="medTable">
             <thead>
                 <tr>
@@ -70,6 +70,7 @@ $conn->close();
 
             </tbody>
         </table>
+        </div>
     </section>
 
 

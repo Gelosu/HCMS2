@@ -1,63 +1,68 @@
-<section id="user" class="section">
-                <div class="add-user button">
-                <button onclick="openAddUserModal()">Add User</button>
-                </di>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Position</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-include 'connect.php';
-$sql = "SELECT adid, adname, adsurname, adusername, adpass, adposition FROM admin";
-$result = mysqli_query($conn, $sql);
+<div id="user" class="section">
+    <div class="add-button-container">
+        <button onclick="openAddUserModal()">Add User</button>
+    </div>
+               
+    <div class="table-container">
+    <table class="styled-table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Position</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        include 'connect.php';
+        $sql = "SELECT adid, adname, adsurname, adusername, adpass, adposition FROM admin";
+        $result = mysqli_query($conn, $sql);
 
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars($row["adname"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["adsurname"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["adusername"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["adpass"]) . "</td>";
-        echo "<td>" . htmlspecialchars($row["adposition"]) . "</td>";
-        echo "<td>";
-        // Edit button
-        echo "<a href='#' class='edit-btn' onclick=\"openEditUserModal(
-            '" . htmlspecialchars($row['adid']) . "',
-            '" . htmlspecialchars($row['adname']) . "',
-            '" . htmlspecialchars($row['adsurname']) . "',
-            '" . htmlspecialchars($row['adusername']) . "',
-            '" . htmlspecialchars($row['adpass']) . "',
-            '" . htmlspecialchars($row['adposition']) . "'
-        )\"> 
-        <img src='edit_icon.png' alt='Edit' style='width: 20px; height: 20px;'></a>";
-        
-        // Delete button
-        echo "<a href='#' class='delete-btn' onclick=\"deleteUser('" . htmlspecialchars($row['adid']) . "')\">
-        <img src='delete_icon.png' alt='Delete' style='width: 20px; height: 20px;'></a>";
-        
-        echo "</td>";
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='6'>Error: " . htmlspecialchars(mysqli_error($conn)) . "</td></tr>";
-}
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row["adname"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["adsurname"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["adusername"]) . "</td>";
+                echo "<td>******</td>";
+                echo "<td>" . htmlspecialchars($row["adposition"]) . "</td>";
+                echo "<td>";
 
-mysqli_close($conn);
-?>
+                // Edit button
+                echo "<a href='#' class='edit-btn' onclick=\"openEditUserModal(
+                    '" . htmlspecialchars($row['adid']) . "',
+                    '" . htmlspecialchars($row['adname']) . "',
+                    '" . htmlspecialchars($row['adsurname']) . "',
+                    '" . htmlspecialchars($row['adusername']) . "',
+                    '" . htmlspecialchars($row['adpass']) . "',
+                    '" . htmlspecialchars($row['adposition']) . "'
+                )\"> 
+                <img src='edit_icon.png' alt='Edit' style='width: 20px; height: 20px;'></a>";
 
+                // Delete button for non-ADMIN positions
+                if ($row["adposition"] != "ADMIN") {
+                    echo "<a href='#' class='delete-btn' onclick=\"deleteUser('" . htmlspecialchars($row['adid']) . "')\">
+                    <img src='delete_icon.png' alt='Delete' style='width: 20px; height: 20px;'></a>";
+                }
 
+                echo "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='6'>Error: " . htmlspecialchars(mysqli_error($conn)) . "</td></tr>";
+        }
 
-                    </tbody>
-                </table>
+        mysqli_close($conn);
+        ?>
+    </tbody>
+</table>
+
             </div>
+            </div>
+    </div>
 
           <!-- Add User Modal -->
 <div id="addUserModal" class="modal">

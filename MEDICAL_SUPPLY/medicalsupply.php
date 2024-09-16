@@ -17,7 +17,8 @@
     </div>
 
 <!-- MEDICAL SUPPLY TABLE -->
-<table id="medicalSuppliesTable">
+<div class="table-container">
+<table id="medicalSuppliesTable" >
     <thead>
         <tr>
             
@@ -71,6 +72,7 @@
 </tbody>
 
 </table>
+</div>
 </section>
 <!-- Modal for adding new medical supply -->
 <div id="addMedicalSupplyModal" class="modal">

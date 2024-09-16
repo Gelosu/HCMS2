@@ -13,7 +13,7 @@
 
     <!-- Dropdown container for categories -->
     <div class="filter-container">
-        <label for="categoryDropdown">Filter by category:</label>
+        
         <select id="categoryDropdown" onchange="filterByCategory(this.value)">
             <option value="">All</option> 
             <option value="Pedia">Pedia</option>
@@ -29,7 +29,7 @@
         <button onclick="openAddPatientModal()">Add Patient</button>
     </div>
 </div>
-
+<div class="table-container">
     <table id="patientTable">
         <thead>
             <tr>
@@ -73,6 +73,7 @@
             ?>
         </tbody>
     </table>
+    </div>
 </section>
 
 <!-- MODALS SECTION --> 

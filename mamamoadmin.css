@@ -90,31 +90,6 @@ footer {
     padding: 20px;
 }
 
-/* Table Styles */
-table {
-    width: 100%; /* Update width to 90% */
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table th,
-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    width: fit-content;
-}
-
-table th {
-    background-color: #f2f2f2;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f2f2f2;
-}
 
 /* Add button container */
 .add-button-container {
@@ -157,26 +132,6 @@ table tr:hover {
     }
 }
 
-.add-button {
-    background-color: #368533; /* Set background color */
-    color: white; /* Set text color */
-    padding: 8px 16px; /* Add padding */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Add border radius for rounded corners */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    text-decoration: none; /* Remove underline from the anchor tag */
-    float: right; /* Float the button to the right */
-    margin-top: 10px; /* Add margin to create space from the top */
-}
-
-.add-button:hover {
-    background-color: #2d6e2a; /* Darken background color on hover */
-}
-
-.add-button a {
-    text-decoration: none; /* Remove underline */
-    color: white; /* Set text color */
-}
 
 .edit {
     color: #ffffff; /* Set the text color */

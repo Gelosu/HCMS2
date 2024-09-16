@@ -12,16 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);  // Trim leading/trailing spaces
     $password = $_POST['password'];
 
-    // Prepare a statement to select hashed password and user details from the database
-    $stmt_admin = $conn->prepare("SELECT adusername, adpass, adname, adsurname FROM admin WHERE adusername = ?");
+    // Prepare a statement to select hashed password, user details, and position from the database
+    $stmt_admin = $conn->prepare("SELECT adusername, adpass, adname, adsurname, adposition FROM admin WHERE adusername = ?");
     $stmt_admin->bind_param("s", $username);
     $stmt_admin->execute();
     $stmt_admin->store_result(); // Store the result set
 
     // Check if user exists
     if ($stmt_admin->num_rows > 0) {
-        // Bind the result columns (username, hashed password, first name, surname)
-        $stmt_admin->bind_result($adusername, $adpass, $adfirstname, $adsurname);
+        // Bind the result columns (username, hashed password, first name, surname, position)
+        $stmt_admin->bind_result($adusername, $adpass, $adfirstname, $adsurname, $adposition);
         $stmt_admin->fetch(); // Fetch the result
 
         // Verify password using password_verify
@@ -31,9 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['adusername'] = $adusername;
             $_SESSION['adfirstname'] = $adfirstname;
             $_SESSION['adsurname'] = $adsurname;
+            $_SESSION['adposition'] = $adposition;
 
-            // Redirect to admin.php
-            header("Location: admin.php");
+            // Redirect based on adposition
+            if ($adposition === 'HEALTHWORKER') {
+                header("Location: admin.php");
+            } elseif ($adposition === 'ADMIN') {
+                header("Location: admin1.php");
+            } else {
+                echo "Unknown adposition.";
+            }
             exit();
         } else {
             // Password is incorrect

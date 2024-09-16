@@ -1,0 +1,494 @@
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            background-color: #FFFFEE;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            opacity: .1;
+            background: url('mary.jpg') center/45% no-repeat; /* Adjust the image path and scaling */
+        }
+
+        header {
+            background-color: #368533;
+            color: rgb(243, 239, 239);
+            text-align: left;
+            padding: 3px; /* Adjust the padding to make it smaller */
+            height: 50px; /* Adjust the height to make it thinner */
+        }
+
+        header h1 {
+            font-size: 25px; /* Set the text size to 10px */
+            margin: 1; /* Remove default margin for h1 */
+        }
+
+        footer {
+            background-color: #368533;
+            color: rgb(255, 255, 255);
+            text-align: center; /* Horizontally center the text */
+            padding: 8px; /* Padding for some vertical spacing */
+            height: 24px; /* Adjust height if necessary */
+            position: fixed;
+            bottom: 0; /* Fix it to the bottom of the viewport */
+            width: 100%; /* Make the footer span the entire width */
+            left: 0; /* Ensure it aligns to the left edge */
+            margin-bottom: 0px;
+            margin-left: 100px;
+            
+        }
+        
+        
+
+        /* Sidebar Styles */
+        #sidebar {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+            width: 200px;
+            background-color: #368533;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        /* Main Content Styles */
+        #main-content {
+            margin-left: 200px; /* Adjusted to match the width of the sidebar */
+            padding: 20px;
+            display: flex; /* Use flexbox to position the table beside the sidebar */
+        }
+
+       /* Table Container Styles for scrollable table */
+.table-container {
+    max-height: 320px; /* Set the height based on your preference (e.g., around 10 rows) */
+    overflow-y: auto;  /* Enable vertical scrolling when content exceeds the container height */
+           /* Keep the width consistent with your table */
+    margin-left: 1px;  /* Adjust the margin as needed */
+}
+
+
+table {
+    width: 77%;       /* Ensure the table fits the full width of the container */
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th,
+table td {
+    padding: 5px;     /* Adjusted padding for cells */
+    border: 1px solid #000000;
+    font-size: 14px;
+}
+
+table th {
+    background-color: #368533;
+}
+
+table tr:nth-child(even) {
+    background-color: #fcfffd;
+}
+table tr:nth-child(odd) {
+    background-color: #fcfffd;
+}
+
+
+table tr:hover {
+    background-color: #bff0c8;
+}
+
+
+        .add-button-container {
+            text-align: left;
+            margin-top: 1px;
+            margin-left: 10px;
+            margin-right: 225px;
+        }
+        
+        .add-button-container button {
+            background-color: #368533;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .add-button-container button:hover {
+            background-color: #2d6e2a;
+        }
+        
+        /* Search and Add Container */
+        .search-and-add-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .search-container {
+            flex: 1;
+        }
+        
+        #searchInput {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            width: 97%;
+        }
+
+
+        /* Filter Container */
+.filter-container {
+    display: flex; /* Align the dropdown with any other items horizontally if needed */
+    justify-content: flex-start; /* Align the dropdown to the left */
+    margin-bottom: 7px;
+    margin-left: 15px;
+    margin-top: 6px; /* Add space below the filter container */
+}
+
+/* Dropdown Styles */
+#categoryDropdown {
+    padding: 10px; /* Add padding for a larger click area */
+    font-size: 16px; /* Increase font size for readability */
+    border: 1px solid #000000; /* Add border */
+    border-radius: 5px; 
+    background-color: #f9f9f9; /* Set background color */
+    width: 100px; /* Set width of dropdown */
+    cursor: pointer; /* Show pointer on hover */
+    transition: border 0.3s ease; /* Smooth transition for border color on focus */
+}
+
+/* Dropdown hover and focus styles */
+#categoryDropdown:hover {
+    border: 1px solid #368533; /* Change border color on hover */
+}
+
+#categoryDropdown:focus {
+    outline: none; /* Remove default focus outline */
+    border: 1px solid #368533; /* Add custom border on focus */
+}
+
+/* Option Styles (optional, browser-dependent) */
+#categoryDropdown option {
+    padding: 10px; /* Add padding for the options inside the dropdown */
+}
+
+        /* CSS for the modal */
+        /* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Center the modal */
+    padding: 10px; /* Add spacing inside the modal */
+    border: 1px solid #000000;
+    width: 30%; /* Adjust width as needed */
+    max-width: 800px; /* Maximum width for larger screens */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a subtle effect */
+}
+
+
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content2 {
+    background-color: #fefefe;
+    margin: 5% auto; /* Center the modal */
+    padding: 10px; /* Add spacing inside the modal */
+    border: 1px solid #000000;
+    width: 30%; /* Adjust width as needed */
+    max-width: 800px; /* Maximum width for larger screens */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a subtle effect */
+}
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: space-between;
+        }
+
+        label {
+            margin-bottom: 1px;
+            text-align: center;
+        }
+
+        input {
+            padding: 1px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+        }
+
+        input[type="text"]{
+            width: 80%;
+            padding:5px 3px;
+            margin-left: 50px;
+            margin-bottom: -25px;
+            margin-top: 15px;
+           
+        }
+        input[type="number"]{
+            width: 80%;
+            padding:5px 3px;
+            margin-left: 50px;
+            
+           
+        }
+
+        input[type="datetime-local"]
+        {
+            width: 80%;
+            height: 100%;
+            padding:3px 5px;
+            margin-left: 50px;
+            margin-top: 100px;
+            margin-bottom: 25px;
+
+
+        }
+
+        input[type="submit"] {
+            background-color: #368533;
+    color: white;
+    padding: 10px 20px; /* Adjust padding to increase or decrease space inside the button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* Set the width of the button */
+    height: 40px; /* Set the height of the button */
+    text-align: center; /* Center the text horizontally */
+    font-size: 14px; /* Adjust font size as needed */
+    margin-left: 130px;
+    margin-top: 50px;
+    
+    
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2d6e2a;
+        }
+
+        label input {
+            margin-right: 4px;
+        }
+        select {
+           
+    padding: 3px 3px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 80%; 
+    text-align: center;
+    margin-left: 50px;
+}
+    
+
+         
+
+        .modal-appointment {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+        }
+
+
+
+/* Modal container */
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content2 {
+    background-color: #fefefe;
+    margin: 5% auto; /* Center the modal */
+    padding: 20px; /* Add spacing inside the modal */
+    border: 1px solid #000000;
+    border-radius: 8px; /* Rounded corners */
+    width: 80%; /* Adjust width */
+    max-width: 600px; /* Maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a subtle effect */
+    position: relative;
+}
+
+/* Delete Button */
+.delete-btn2 {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text color */
+    border: none;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px; /* Space between delete button and other elements */
+}
+
+.delete-btn2:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.delete-btn2:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close:hover {
+    color: black;
+}
+
+
+
+
+/* Medicine container and entries */
+#medicineContainer,
+#editMedicineContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between entries */
+}
+
+.medicine-entry {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between labels and inputs */
+}
+
+#medicine-dropdown {
+    
+    flex: 1;
+    width: 100%; /* Grow to fill available space */
+}
+
+.medicine-amount {
+    width: 10px; /* Fixed width for amount input */
+}
+
+/* Add Medicine Button */
+button[type="button"] {
+    background-color: #368533; /* Green background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+
+
+
+        /* Hide patient list section by default */
+        #patient-list {
+            display: none;
+        }
+
+        /* Hide medicine inventory section by default */
+        #medicine-inventory {
+            display: none;
+        }
+
+        #patient-appointment{
+            display: none;
+        }
+    
+
+      /* Container for health worker information */
+.healthworker-info {
+    font-size: 16px; /* Adjust font size as needed */
+    color: white; /* Set the text color to white */
+    margin: 5% auto;
+    text-align: center;
+   
+}
+
+/* Style for the health worker label */
+.healthworker-label {
+    font-weight: bold; /* Make the label bold */
+    margin-left: 20px; /* Add space between the label and the name */
+}
+
+/* Style for the health worker name */
+.healthworker-name {
+    font-weight: normal; /* Ensure the name is not bold */
+}
+
+       

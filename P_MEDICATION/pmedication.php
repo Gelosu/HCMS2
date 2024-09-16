@@ -17,8 +17,8 @@
         </div>
     </div>
         <!-- Add Patient Medication Modal -->
-<div id="addMedicationModal" class="modal">
-<div class="modal-content">
+<div id="addMedicationModal" class="modal2">
+<div class="modal-content2">
 <span class="close" onclick="closeAddMedicationModal()">&times;</span>
     <h3>Add Patient Medication</h3>
     
@@ -53,9 +53,7 @@
         <label for="medicationHealthWorker">Assigned Healthworker:</label>
         <input type="text" id="medicationHealthWorker" name="medicationHealthWorker" value="<?php echo htmlspecialchars($healthWorker); ?>" readonly>
         
-        <!-- Submit and Cancel buttons -->
-        <button type="submit">Submit</button>
-        <button type="button" onclick="closeAddMedicationModal()">Cancel</button>
+        <input type="submit" value="Submit">
     </form>
 </div>
 </div>
@@ -63,8 +61,8 @@
 
 
 <!-- Edit Patient Medication Modal -->
-<div id="editMedicationModal" class="modal" style="display: none;">
-    <div class="modal-content">
+<div id="editMedicationModal" class="modal2">
+    <div class="modal-content2">
         <span class="close" onclick="closeEditMedicationModal()">&times;</span>
         <h3>Edit Patient Medication</h3>
         
@@ -100,8 +98,8 @@
             <input type="hidden" id="editMedicationId" name="editMedicationId">
             
             <!-- Submit and Cancel buttons -->
-            <button type="submit">Save Changes</button>
-            <button type="button" onclick="closeEditMedicationModal()">Cancel</button>
+            <input type="submit" value="Submit">
+
         </form>
     </div>
 </div>
@@ -109,6 +107,7 @@
 
 
             <!-- Medications Table -->
+            <div class="table-container">
             <table id="medicationtable">
             <thead>
         <tr>
@@ -190,4 +189,5 @@ $conn->close();
 
     </tbody>
 </table>
+</div>
         </section>

@@ -66,7 +66,7 @@
         /* Table Styles */
         table {
             width: calc(100% - 250px); /* Adjusted to fill more space beside the sidebar */
-            border-collapse: collapse;
+            border-collapse: separate;
             margin-top: 10px;
             margin-left: 25px;
             
@@ -74,8 +74,8 @@
 
         table th,
         table td {
-            padding: 15px; /* Adjusted padding for cells */
-            border: 1px solid #000000;
+            padding: 5px; /* Adjusted padding for cells */
+            border: 1px solid #187e4b;
             /* Adjusted width to occupy more space */
             width: 250px; /* You can adjust this value as needed */
             font-size: 14px;
@@ -91,7 +91,7 @@
         }
 
         table tr:hover {
-            background-color: #a8f5b9;
+            background-color: #000000;
         }
 
         /* Add Patient button style */
@@ -200,6 +200,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin: 25px;
+            margin: 5px;
 
         }

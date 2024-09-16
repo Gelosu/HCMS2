@@ -1,4 +1,4 @@
-// Assume healthWorkerName is defined in a script block as shown above
+//APPOINTMENT - BUGGISHHHHHHHHHHH IDKKKKKKKKKKKK
 
 // Function to open the Add Appointment modal
 function openAddAppointmentModal() {
@@ -8,7 +8,7 @@ function openAddAppointmentModal() {
         .then(result => {
             if (result.success) {
                 console.log("check result: ", result.data);
-                populatePatientDropdown(result.data);
+                populatePatientDropdown2(result.data);
                 // Set the health worker's name
                 document.getElementById('healthWorker').value = healthWorkerName;
                 document.getElementById('addAppointmentModal').style.display = 'block';
@@ -20,7 +20,7 @@ function openAddAppointmentModal() {
 }
 
 // Function to populate the patient dropdown
-function populatePatientDropdown(patients) {
+function populatePatientDropdown2(patients) {
     var dropdown = document.getElementById('patientName');
     dropdown.innerHTML = ''; // Clear existing options
 
@@ -207,3 +207,4 @@ function deleteAppointment(appointmentId) {
         .catch(error => console.error('Error deleting record:', error));
     }
 }
+

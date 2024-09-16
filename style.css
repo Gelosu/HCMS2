@@ -1,4 +1,3 @@
-
 /* Global Styles */
 body {
     margin: 0;
@@ -16,39 +15,42 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -10;
-    opacity: .1;
-    background: url('mary.jpg') center/45% no-repeat; /* Adjust the image path and scaling */
+    opacity: 0.1;
+    background: url('mary.jpg') center/45% no-repeat;
 }
 
+/* Header Styles */
 header {
     background-color: #368533;
-    color: rgb(243, 239, 239);
+    color: #f3efef;
     text-align: left;
-    padding: 3px; /* Adjust the padding to make it smaller */
-    height: 50px; /* Adjust the height to make it thinner */
+    padding: 3px;
+    height: 50px;
 }
 
 header h1 {
-    font-size: 25px; /* Set the text size to 10px */
-    margin: 1; /* Remove default margin for h1 */
+    font-size: 25px;
+    margin: 0; /* Removed unnecessary margin */
 }
 
+/* Footer Styles */
 footer {
     background-color: #368533;
     color: black;
     text-align: center;
-    padding: 1px; /* Adjust the padding to make it smaller */
-    height: 24px; /* Adjust the height to make it thinner */
+    padding: 1px;
+    height: 24px;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
+/* Sidebar Styles */
 #sidebar {
     position: fixed;
     left: 0;
-    top: 60px; /* Height of the header */
-    bottom: 30px; /* Height of the footer */
+    top: 60px;
+    bottom: 30px;
     width: 150px;
     background-color: #368533;
     padding-top: 20px;
@@ -77,54 +79,80 @@ footer {
     display: block;
 }
 
+/* Logo in Sidebar */
 #logo {
     text-align: center;
     margin-bottom: 20px;
 }
 
 #logo img {
-    width: 100px; /* Adjust as needed */
+    width: 100px;
 }
 
+/* Main Content */
 #content {
-    margin-left: 200px;
+    margin-left: 160px;
     padding: 20px;
+    overflow: auto; /* Adds scrolling if content exceeds viewport height */
 }
 
-/* Table Styles */
-table {
-    width: 100%; /* Update width to 90% */
+.table-container {
+    width: 100%;        /* Adjust as needed */
+    max-height: 400px;  /* Adjust the height as needed */
+    overflow-y: auto;   /* Enables vertical scrollbar */
+    border: 1px solid #ddd; /* Optional border for the container */
+}
+
+.styled-table {
+    width: 100%; 
     border-collapse: collapse;
-    margin-bottom: 20px;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 200px;
+    overflow-y: auto;
+  
+    max-width: 1000px;
 }
 
-table th,
-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.styled-table th, .styled-table td {
+    padding: 5px 5px;
+    border: 1px solid #000000;
     width: fit-content;
+   
 }
 
-table th {
+.styled-table th {
+    background-color: #368533;
+    color: white;
+    
+
+}
+
+.styled-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+.styled-table tr:hover {
+    background-color: #e2e2e2;
 }
 
-table tr:hover {
-    background-color: #f2f2f2;
+/* Action Buttons in Table */
+table td a img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-/* Add button container */
+table td a img:hover {
+    transform: scale(1.2);
+}
+
+/* Add Button Container */
 .add-button-container {
-    text-align: right;
-    margin-top: -15px;
-    margin-left: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 200px;
 }
 
-/* Add Patient button style */
 .add-button-container button {
     background-color: #368533;
     color: white;
@@ -132,125 +160,152 @@ table tr:hover {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .add-button-container button:hover {
     background-color: #2d6e2a;
 }
+
+/* Search and Add Container */
 .search-and-add-container {
-    display: flex;             /* Use flexbox for alignment */
-    justify-content: space-between; /* Distribute space between elements */
-    align-items: center;       /* Center align items vertically */
-    margin-bottom: 20px;       /* Space below the container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .search-container {
-    flex: 1;                   /* Take up available space */
-    }
+    flex: 1;
+}
+
 #searchInput {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%;
 }
- /* CSS for the modal */
- .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    margin: 10% auto;
+    padding: 10px;
+    border: 1px solid #000000;
+    width: 30%;
+    height: 70%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Close button */
+/* Close Button in Modal */
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: black;
     text-decoration: none;
-    cursor: pointer;
 }
 
 /* Form Styles */
 form {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    gap: 5px;
 }
 
 label {
-    margin-bottom: 8px;
+    margin-bottom: 1px;
+    text-align: center;
 }
 
+
+
 input {
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ddd;
+    padding: 1px;
+    margin-bottom: 1px;
+    border: 1px solid #000000;
     border-radius: 4px;
 }
 
-input[type="text"],
+input[type="text"],input[type="password"],
 input[type="date"] {
-    width: 100%;
+    width: 80%;
+    padding:5px 3px;
+    margin-left: 50px;
+    margin-bottom: -35px;
 }
 
 input[type="submit"] {
     background-color: #368533;
     color: white;
+    padding: 10px 20px; /* Adjust padding to increase or decrease space inside the button */
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* Set the width of the button */
+    height: 40px; /* Set the height of the button */
+    text-align: center; /* Center the text horizontally */
+    font-size: 14px; /* Adjust font size as needed */
+    margin-left: 130px;
+    
 }
+
 
 input[type="submit"]:hover {
     background-color: #2d6e2a;
 }
 
-label input {
-    margin-right: 4px;
-}
-
-/* Hide patient list section by default */
-#patient-list {
-    display: none;
-}
-
-/* Hide medicine inventory section by default */
-#medicine-inventory {
-    display: none;
-}
-
+/* Logout Button */
 .logout-btn {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: #007bff; /* Or any color of your choice */
+    background-color: #007bff;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
+    background-color: #0056b3;
 }
 
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    #sidebar {
+        width: 120px;
+    }
+
+    #content {
+        margin-left: 140px;
+    }
+
+    .modal-content {
+        width: 90%; /* Make modals more responsive */
+    }
+}

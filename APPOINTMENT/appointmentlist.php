@@ -1,7 +1,7 @@
     <!-- Patient Appointment section -->
-    <section id="patient-appointment" class="section" style="display: none;">
+    <section id="patient-appointment" class="section">
     <h2>Patient Appointment</h2>
-    
+    <div class="search-and-add-container">
     <!-- Search bar container -->
     <div class="search-container">
         <input type="text" id="searchInput" onkeyup="searchTable4(this.value);" placeholder="Search for appointments...">
@@ -11,9 +11,10 @@
     <div class="add-button-container">
         <button onclick="openAddAppointmentModal()">Add Appointment</button>
     </div>
+    </div>
 
-   <!-- Add Appointment Modal -->
-<div id="addAppointmentModal" class="modal" style="display: none;">
+<!-- Add Appointment Modal -->
+<div id="addAppointmentModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeAddAppointmentModal()">&times;</span>
         <h3>Add Appointment</h3>
@@ -37,15 +38,15 @@
             <label for="healthWorker">Assigned Healthworker:</label>
             <input type="text" id="healthWorker" name="healthWorker" readonly>
             
-            <button type="submit">Submit</button>
-            <button type="button" onclick="closeAddAppointmentModal()">Cancel</button>
+            <input type="submit" value="Submit">
+            
         </form>
     </div>
 </div>
 
 
 <!--  Edit Appointment Modal -->
-<div id="editAppointmentModal" class="modal" style="display: none;">
+<div id="editAppointmentModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeEditAppointmentModal()">&times;</span>
         <h3>Edit Appointment</h3>
@@ -73,8 +74,8 @@
             <!-- Hidden field for appointment ID -->
             <input type="hidden" id="editAppointmentId" name="editAppointmentId">
             
-            <button type="submit">Save Changes</button>
-            <button type="button" onclick="closeEditAppointmentModal()">Cancel</button>
+            <input type="submit" value="Submit">
+            <input type="button" onclick="closeEditAppointmentModal()">Cancel</input>
         </form>
     </div>
 </div>
@@ -84,7 +85,7 @@
 
 
     <!-- Appointments Table -->
-   <!-- Appointments Table -->
+    <div class="table-container">
 <table id="appointmentsTable">
     <thead>
         <tr>
@@ -137,3 +138,4 @@
     ?>
     </tbody>
 </table>
+</div>
