@@ -56,6 +56,30 @@ $healthWorker = $_SESSION['adfirstname'] . ' ' . $_SESSION['adsurname'];
 
 
 <div id="content">
+<section id="dashboard" class="section">
+    <h2>DASHBOARD</h2>
+    
+    <div class="card-container">
+        <div class="card">
+            <h3>Total Patients</h3>
+            <p>150</p>
+        </div>
+        <div class="card">
+            <h3>Total Medicines</h3>
+            <p>50</p>
+        </div>
+        <div class="card">
+            <h3>Appointments Today</h3>
+            <p>10</p>
+        </div>
+        <div class="card">
+            <h3>Medications</h3>
+            <p>25</p>
+        </div>
+        <!-- Add more cards as needed -->
+    </div>
+</section>
+
 <?php
         
         include 'PATIENTLIST/patientlist.php';
@@ -546,6 +570,7 @@ function searchTable5(inputValue) {
         var sections = document.querySelectorAll('.section');
         sections.forEach(function(section) {
             if (section.id === sectionId) {
+                console.log("section check: ", sectionId)
                 section.style.display = 'block';
             } else {
                 section.style.display = 'none';

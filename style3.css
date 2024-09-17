@@ -25,7 +25,7 @@
             color: rgb(243, 239, 239);
             text-align: left;
             padding: 3px; /* Adjust the padding to make it smaller */
-            height: 100%; /* Adjust the height to make it thinner */
+            height: 50px; /* Adjust the height to make it thinner */
         }
 
         header h1 {
@@ -491,4 +491,47 @@ button[type="button"] {
     font-weight: normal; /* Ensure the name is not bold */
 }
 
-       
+#dashboard {
+    display: none;
+}
+
+#dashboard {
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Cards will wrap if screen width is small */
+    justify-content: space-around; /* Centers the cards and leaves equal space */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid black; /* Add a black border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Moves the card up on hover */
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #368533;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}

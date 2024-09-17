@@ -17,46 +17,51 @@
         </div>
     </div>
         <!-- Add Patient Medication Modal -->
+<!-- Add Medication Modal -->
 <div id="addMedicationModal" class="modal2">
-<div class="modal-content2">
-<span class="close" onclick="closeAddMedicationModal()">&times;</span>
-    <h3>Add Patient Medication</h3>
-    
-    <!-- Form starts here -->
-    <form id="addMedicationForm" onsubmit="submitAddMedicationForm(event)">
-        <!-- Patient Dropdown -->
-        <label for="medicationPatientName">Name of Patient:</label>
-        <select id="medicationPatientName" name="medicationPatientName" required>
-            <!-- Options will be populated dynamically -->
-        </select>
-        
-        <!-- Medicine Section -->
-        <div id="medicineContainer">
-            <div class="medicine-entry">
-                <label for="medicines">Medicine:</label>
-                <select class="medicine-dropdown" name="medicines[]" required>
-                    <!-- Options will be populated dynamically -->
-                </select>
-                <label for="amount">Amount:</label>
-                <input type="number" name="amount[]" class="medicine-amount" required>
-            </div>
-        </div>
+    <div class="modal-content2">
+        <span class="close" onclick="closeAddMedicationModal()">&times;</span>
+        <h3>Add Patient Medication</h3>
 
-        <!-- Add Medicine Button -->
-        <button type="button" onclick="addMedicineField()">Add Another Medicine</button>
-        
-        <!-- Date and Time Input -->
-        <label for="medicationDateTime">Date and Time:</label>
-        <input type="datetime-local" id="medicationDateTime" name="medicationDateTime" required>
-        
-        <!-- Assigned Healthworker -->
-        <label for="medicationHealthWorker">Assigned Healthworker:</label>
-        <input type="text" id="medicationHealthWorker" name="medicationHealthWorker" value="<?php echo htmlspecialchars($healthWorker); ?>" readonly>
-        
-        <input type="submit" value="Submit">
-    </form>
+        <!-- Form starts here -->
+        <form id="addMedicationForm" onsubmit="submitAddMedicationForm(event)">
+            <!-- Patient Dropdown -->
+            <label for="medicationPatientName">Name of Patient:</label>
+            <select id="medicationPatientName" name="medicationPatientName" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+            
+            <!-- Medicine Section -->
+            <div id="medicineContainer">
+                <div class="medicine-entry">
+                    <label for="medicines">Medicine:</label>
+                    <select class="medicine-dropdown" name="medicines[]" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                    <label for="amount">Amount:</label>
+                    <input type="number" name="amount[]" class="medicine-amount" required>
+                    <!-- Create delete button for initial entry -->
+                    
+                </div>
+            </div>
+
+            <!-- Add Medicine Button -->
+            <button type="button" onclick="addMedicineField()">Add Another Medicine</button>
+            
+            <!-- Date and Time Input -->
+            <label for="medicationDateTime">Date and Time:</label>
+            <input type="datetime-local" id="medicationDateTime" name="medicationDateTime" required>
+            
+            <!-- Assigned Healthworker -->
+            <label for="medicationHealthWorker">Assigned Healthworker:</label>
+            <input type="text" id="medicationHealthWorker" name="medicationHealthWorker" value="<?php echo htmlspecialchars($healthWorker); ?>" readonly>
+            
+            <!-- Submit Button -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </div>
-</div>
+
 
 
 
@@ -86,6 +91,7 @@
 <!-- Add Medicine Button -->
 <button type="button" onclick="addEditMedicineField()">Add Another Medicine</button>
             
+
             <!-- Date and Time Input -->
             <label for="editMedicationDateTime">Date and Time:</label>
             <input type="datetime-local" id="editMedicationDateTime" name="editMedicationDateTime" required>

@@ -91,7 +91,7 @@ function fetchMedicineOptions() {
         });
 }
 
-// Function to add a new medicine input field dynamically
+// Function to add a new medicine input field dynamically in the Add Medication Modal
 function addMedicineField() {
     const container = document.getElementById('medicineContainer');
     
@@ -117,8 +117,19 @@ function addMedicineField() {
     const newAmountInput = document.createElement('input');
     newAmountInput.type = 'number';
     newAmountInput.name = 'amount[]';
+    newAmountInput.className = 'medicine-amount';
     newAmountInput.required = true;
     newMedicineEntry.appendChild(newAmountInput);
+
+    // Create delete button
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-btn';
+    deleteButton.onclick = function() {
+        container.removeChild(newMedicineEntry); // Remove this medicine entry
+    };
+    newMedicineEntry.appendChild(deleteButton);
 
     // Append the new entry to the medicine container
     container.appendChild(newMedicineEntry);
@@ -133,6 +144,7 @@ function addMedicineField() {
         });
     }
 }
+
 
 // Function to populate a specific medicine dropdown (used for both add and edit modals)
 function populateMedicineDropdownForEntry(dropdown, selectedMedicine = '') {
@@ -320,6 +332,7 @@ function formatDateTimeForInput(datetime) {
 }
 
 // Function to add a new medicine input field dynamically in the Edit Modal
+// Function to add a new medicine input field dynamically in the Edit Medication Modal
 function addEditMedicineField(medName = '', medAmount = '') {
     const editContainer = document.getElementById('editMedicineContainer');
     
@@ -345,6 +358,7 @@ function addEditMedicineField(medName = '', medAmount = '') {
     const newAmountInput = document.createElement('input');
     newAmountInput.type = 'number';
     newAmountInput.name = 'editAmount[]';
+    newAmountInput.className = 'medicine-amount';
     newAmountInput.required = true;
     newAmountInput.value = medAmount; // Set the default amount value
     newMedicineEntry.appendChild(newAmountInput);
@@ -355,7 +369,7 @@ function addEditMedicineField(medName = '', medAmount = '') {
     deleteButton.textContent = 'Delete';
     deleteButton.className = 'delete-btn';
     deleteButton.onclick = function() {
-        editContainer.removeChild(newMedicineEntry); // Remove this medicine entry
+        removeMedicineField(deleteButton); // Remove this medicine entry
     };
     newMedicineEntry.appendChild(deleteButton);
 
@@ -372,6 +386,13 @@ function addEditMedicineField(medName = '', medAmount = '') {
         });
     }
 }
+
+// Function to remove a medicine field
+function removeMedicineField(button) {
+    const editContainer = document.getElementById('editMedicineContainer');
+    editContainer.removeChild(button.parentNode); // Remove the medicine entry
+}
+
 
 
 
