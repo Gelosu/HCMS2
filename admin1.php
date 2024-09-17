@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="mamamoadmin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-DlSg7oCoIEZd3TpUB8tgL5irGlVg8H1Yqf+i6BR6DNOxj8GkoL9Ji/ZgQwsyu8ksk7Qf5owSJ3dZh8tCx3oA8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     
     </head>
-<body>
+<div>
     <header>
         <h1>BRGY STA. MARIA HEALTH CENTER</h1>
     </header>
@@ -26,49 +25,10 @@
     </div>
 
     <div id="main-content">
-    <section id="user" class="section">
             <?php include 'ADMIN/userlist.php'; ?>
-        </section>
+            <?php include 'ADMIN/eventlist.php'; ?>
 
-
-<section id="events" class="section" style="display: none;">
-            <h2>Schedule of Events</h2>
-            <input type="text" id="searchBar" placeholder="Search events...">
-            <button onclick="openAddEventModal()">Add Event</button>
-            
-            <!-- Add Event Modal -->
-            <div id="addEventModal" style="display: none;">
-                <h3>Add Event</h3>
-                <form id="addEventForm" onsubmit="submitAddEventForm(event)">
-                    <label for="eventName">Name of Event:</label>
-                    <input type="text" id="eventName" name="eventName" required>
-                    <label for="eventDescription">Description of Event:</label>
-                    <textarea id="eventDescription" name="eventDescription" required></textarea>
-                    <label for="eventDateTime">Date and Time:</label>
-                    <input type="datetime-local" id="eventDateTime" name="eventDateTime" required>
-                    <button type="submit">Submit</button>
-                    <button type="button" onclick="closeAddEventModal()">Cancel</button>
-                </form>
-            </div>
-
-            <!-- Events Table -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>Description</th>
-                        <th>Scheduled Date and Time</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be added here dynamically -->
-                </tbody>
-            </table>
-        </div>
-    </div>
- 
-    </div>
+</div>
 
     <script>
 
@@ -95,8 +55,288 @@
     }
 
 
+//EVENTS MANAGEMENET
 
-        function openAddUserModal() {
+function searchTable7(inputValue) {
+    var searchQuery = inputValue.toLowerCase().trim();
+    var table = document.getElementById("eventsTable"); 
+    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var cell = row.getElementsByTagName('td')[0]; 
+
+        if (cell) {
+            var cellValue = cell.textContent || cell.innerText; 
+           
+            if (cellValue.toLowerCase().indexOf(searchQuery) > -1) {
+                row.style.display = ''; 
+            } else {
+                row.style.display = 'none'; 
+            }
+        }
+    }
+}
+
+
+
+let selectedMonth = "";
+let selectedYear = "";
+
+// Fetch available years when the document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    fetchYears();
+});
+
+// Fetch unique years from the database
+function fetchYears() {
+    fetch('ADMIN/fetch_years.php') // Adjust the path if necessary
+        .then(response => response.json())
+        .then(years => {
+            const yearDropdown = document.getElementById('yearDropdown');
+            yearDropdown.innerHTML = '<option value="">Select Year</option>'; // Clear any previous options
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearDropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching years:', error));
+}
+
+// Triggered when a year is selected
+function filterByYear(year) {
+    selectedYear = year;  // Store the selected year
+    filterEvents();  // Apply combined filters (year and month)
+}
+
+// Triggered when a month is selected
+function filterByCategory2(month) {
+    selectedMonth = month;  // Store the selected month
+    filterEvents();  // Apply combined filters (year and month)
+}
+
+// Function to filter events based on the selected year and month
+function filterEvents() {
+    const table = document.getElementById('eventsTable');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) { 
+        const dateCell = rows[i].getElementsByTagName('td')[2]; // Adjust index if needed
+
+        if (dateCell) {
+            const dateText = dateCell.textContent || dateCell.innerText;
+            console.log("Date Cell Text:", dateText); // Debugging line
+
+            // Extract year and month from the formatted date string
+            const yearFromCell = extractYearFromDate(dateText);
+            const monthFromCell = extractMonthFromDate(dateText);
+
+            // Check if the row matches the selected year and month
+            const matchesYear = (selectedYear === "" || yearFromCell === selectedYear);
+            const matchesMonth = (selectedMonth === "" || monthFromCell.toLowerCase() === selectedMonth.toLowerCase());
+
+            // Show the row if both year and month match (or if they are not selected)
+            if (matchesYear && matchesMonth) {
+                rows[i].style.display = ""; 
+            } else {
+                rows[i].style.display = "none"; 
+            }
+        }
+    }
+}
+
+// Extract the year from the formatted date
+function extractYearFromDate(dateText) {
+    const match = dateText.match(/\d{4}/); // Matches a four-digit year
+    return match ? match[0] : ''; // Return the matched year or empty string if no match
+}
+
+// Extract the month from the formatted date (assumes month is the first word)
+function extractMonthFromDate(dateText) {
+    const match = dateText.match(/\b\w+\b/); // Matches the first word (month)
+    return match ? match[0] : ''; // Return the matched month or empty string if no match
+}
+
+
+
+
+function openAddEventModal() {
+    document.getElementById('addEventModal').style.display = 'block';
+}
+
+function closeAddEventModal() {
+    document.getElementById('addEventModal').style.display = 'none';
+}
+
+// ADD EVENT
+function submitAddEventForm(event) {
+    event.preventDefault();
+
+    var formData = new FormData(document.getElementById('addEventForm'));
+
+    fetch('ADMIN/add_event.php', { // Adjust the path as necessary
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Parse JSON response
+    .then(result => {
+        if (result.success) {
+            console.log("Event data:", result.events);
+            console.log("Years data:", result.years);
+            closeAddEventModal(); // Close the modal on success
+            updateEventTable(result.events); // Update the table with new data
+            updateYearDropdown(result.years); // Update the year dropdown
+        } else {
+            alert('Error: ' + result.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+// Function to format date and time
+function formatDateTime(datetime) {
+    const date = new Date(datetime);
+    // Format date to "Month Day, Year Time AM/PM"
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+}
+
+// UPDATE EVENT TABLE
+function updateEventTable(events) {
+    var tableBody = document.querySelector('#events table tbody');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    events.forEach(event => {
+        const formattedDateTime = formatDateTime(event.datetime);
+        var row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${event.event_name}</td>
+            <td>${event.event_description}</td>
+            <td>${formattedDateTime}</td>
+            <td>
+                <a href='#' class='edit-btn' onclick="openEditEventModal(
+                    '${event.id}',
+                    '${event.event_name}',
+                    '${event.event_description}',
+                    '${event.datetime}'
+                )">
+                    <img src='edit_icon.png' alt='Edit' style='width: 20px; height: 20px;'>
+                </a>
+                <a href='#' class='delete-btn' onclick="deleteEvent('${event.id}')">
+                    <img src='delete_icon.png' alt='Delete' style='width: 20px; height: 20px;'>
+                </a>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// UPDATE YEAR DROPDOWN
+function updateYearDropdown(years) {
+    const yearDropdown = document.getElementById('yearDropdown');
+    yearDropdown.innerHTML = '<option value="">Select Year</option>'; // Clear existing options
+
+    years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearDropdown.appendChild(option);
+    });
+}
+
+
+
+//EDIT TABLE
+function openEditEventModal(eventId, eventName, eventDescription, eventDateTime) {
+    // Set the form values
+    document.getElementById('editEventId').value = eventId;
+    document.getElementById('editEventName').value = eventName;
+    document.getElementById('editEventDescription').value = eventDescription;
+    document.getElementById('editEventDateTime').value = eventDateTime;
+
+    // Show the modal
+    document.getElementById('editEventModal').style.display = 'block';
+}
+
+function closeEditEventModal() {
+    document.getElementById('editEventModal').style.display = 'none';
+}
+
+function submitEditEventForm(event) {
+    event.preventDefault();
+
+    var formData = new FormData(document.getElementById('editEventForm'));
+
+    fetch('ADMIN/edit_event.php', { // Adjust the path as necessary
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            closeEditEventModal(); // Close the modal on success
+            updateEventTable(result.events); // Update the table with new data
+        } else {
+            alert('Error: ' + result.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function deleteEvent(eventId) {
+    console.log("Event ID to delete:", eventId);
+
+    // Check if eventId is valid
+    if (!eventId) {
+        console.error('Invalid Event ID:', eventId);
+        alert('Error: Event ID is missing.');
+        return;
+    }
+
+    if (confirm('Are you sure you want to delete this event?')) {
+        fetch('ADMIN/delete_event.php', { // Adjust the path if necessary
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: eventId })
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Event deleted successfully.');
+                updateEventTable(result.events); // Use the updated list of events
+            } else {
+                console.error('Error deleting event:', result.error);
+                alert('Error deleting event: ' + result.error + '. Event ID: ' + result.received_id);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error processing the request.');
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+//USER MANAGEMENT
+function openAddUserModal() {
     document.getElementById('addUserModal').style.display = 'block';
 }
 
@@ -122,6 +362,7 @@ function openEditUserModal(id, adname, adsurname, adusername, adpass, adposition
             document.getElementById('editUserModal').style.display = 'none';
         }
 
+     
 
 //ADD USER
     function submitForm(event) {
@@ -238,4 +479,7 @@ function deleteUser(adid) {
         }
     </script>
 </body>
+<footer>
+    <p>&copy; 2024 BRGY STA. MARIA HEALTH CENTER. All rights reserved.</p>
+</footer>
 </html>

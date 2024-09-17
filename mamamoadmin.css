@@ -21,10 +21,13 @@ body::before {
 
 header {
     background-color: #368533;
-    color: rgb(243, 239, 239);
+    color: #f3efef;
     text-align: left;
-    padding: 3px; /* Adjust the padding to make it smaller */
-    height: 50px; /* Adjust the height to make it thinner */
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 
 header h1 {
@@ -90,6 +93,31 @@ footer {
     padding: 20px;
 }
 
+/* Table Styles */
+table {
+    width: 100%; /* Update width to 90% */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: fit-content;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f2f2f2;
+}
 
 /* Add button container */
 .add-button-container {
@@ -132,6 +160,26 @@ footer {
     }
 }
 
+.add-button {
+    background-color: #368533; /* Set background color */
+    color: white; /* Set text color */
+    padding: 8px 16px; /* Add padding */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: none; /* Remove underline from the anchor tag */
+    float: right; /* Float the button to the right */
+    margin-top: 10px; /* Add margin to create space from the top */
+}
+
+.add-button:hover {
+    background-color: #2d6e2a; /* Darken background color on hover */
+}
+
+.add-button a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set text color */
+}
 
 .edit {
     color: #ffffff; /* Set the text color */
